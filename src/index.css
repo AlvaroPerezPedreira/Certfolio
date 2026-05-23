@@ -1,0 +1,52 @@
+:root {
+  --color-on-dark: #ffffff;
+  --color-body: #bbbbbb;
+  --color-body-strong: #e6e6e6;
+  --color-muted: #7e7e7e;
+  --color-hairline: #3c3c3c;
+  --color-hairline-strong: #262626;
+  --color-surface: #0d0d0d;
+  --color-surface-card: #1a1a1a;
+  --color-m-blue-light: #0066b1;
+  --color-m-blue-dark: #1c69d4;
+  --color-m-red: #e22718;
+  --font-display: 'BMWType Next', 'Saira Condensed', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  color: var(--color-body);
+  background: #000;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #000;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100svh;
+}
