@@ -192,11 +192,21 @@
   gap: 12px;
 }
 
+.profile-name {
+  margin: 0 0 10px;
+  color: var(--color-body-strong);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .home-title {
   margin: 0;
   padding-left: 14px;
   border-left: 4px solid var(--color-m-blue-dark);
-  font-size: clamp(1.45rem, 3.4vw, 2.45rem);
+  font-size: clamp(1.28rem, 2.7vw, 2rem);
   line-height: 1.08;
 }
 
@@ -511,9 +521,16 @@
 
 .provider-logo-oval {
   width: 28px;
+  height: 28px;
+  position: relative;
+}
+
+.provider-logo-oval::before {
+  width: 28px;
   height: 13px;
   border: 2px solid var(--provider-color);
   border-radius: 9999px;
+  content: '';
 }
 
 .provider-logo-text {
@@ -540,7 +557,8 @@
 
 .cert-grid {
   display: grid;
-  gap: 18px;
+  gap: 0;
+  margin-top: 4px;
 }
 
 .form-grid {
@@ -568,37 +586,70 @@
   gap: 12px;
 }
 
-.cert-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .cert-card {
   display: grid;
-  gap: 16px;
-  min-height: 150px;
-  padding: 20px;
-  border: 1px solid var(--color-hairline-strong);
-  border-top: 2px solid transparent;
-  background:
-    linear-gradient(180deg, rgba(28, 105, 212, 0.08), transparent 42%),
-    rgba(26, 26, 26, 0.92);
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 24px;
+  padding: 26px 0 26px 40px;
+  border-bottom: 1px solid var(--color-hairline-strong);
 }
 
-.cert-card {
-  overflow: hidden;
+.cert-card::before {
+  position: absolute;
+  inset: 0 auto 0 11px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(28, 105, 212, 0.82) 22%, rgba(28, 105, 212, 0.18));
+  content: '';
+}
+
+.cert-card::after {
+  position: absolute;
+  top: 31px;
+  left: 5px;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--color-m-blue-dark);
+  background: #000;
+  box-shadow: 0 0 0 4px rgba(28, 105, 212, 0.14);
+  content: '';
 }
 
 .cert-card:hover {
-  border-color: var(--color-hairline);
-  border-top-color: var(--color-m-red);
-  background:
-    linear-gradient(180deg, rgba(28, 105, 212, 0.12), transparent 42%),
-    rgba(31, 31, 31, 0.94);
+  border-bottom-color: rgba(28, 105, 212, 0.58);
+}
+
+.cert-provider-mark {
+  display: inline-grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: var(--color-body-strong);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  grid-column: 1 / -1;
+  order: -1;
+}
+
+.cert-provider-mark .provider-logo {
+  color: var(--color-m-blue-dark);
+}
+
+.cert-provider-mark span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cert-card-body {
   display: grid;
   gap: 10px;
+  min-width: 0;
 }
 
 .cert-title {
@@ -607,27 +658,52 @@
   overflow: hidden;
   color: var(--color-on-dark);
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: clamp(1.16rem, 2vw, 1.58rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   text-transform: uppercase;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .cert-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px 14px;
   color: var(--color-body);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+}
+
+.cert-meta span + span::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin: 0 10px 2px 0;
+  background: var(--color-m-blue-dark);
 }
 
 .cert-link {
-  align-self: end;
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  align-self: center;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(28, 105, 212, 0.72);
+  color: var(--color-on-dark);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.cert-link:hover,
+.cert-link:focus-visible {
+  color: var(--color-m-blue-dark);
 }
 
 @media (max-width: 1024px) {
@@ -662,9 +738,26 @@
     width: min(100%, calc(100% - 24px));
   }
 
-  .cert-grid,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cert-card {
+    grid-template-columns: 1fr;
+    padding: 24px 0 24px 34px;
+  }
+
+  .cert-provider-mark {
+    width: 100%;
+  }
+
+  .cert-title {
+    font-size: 1.06rem;
+  }
+
+  .cert-link {
+    justify-self: start;
+    width: auto;
   }
 
   .cert-toolbar {

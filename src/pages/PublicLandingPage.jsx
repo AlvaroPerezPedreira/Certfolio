@@ -21,16 +21,12 @@ export function PublicLandingPage() {
           <Link className="app-name" to="/">
             Certfolio
           </Link>
-          <nav className="topnav" aria-label="Primary">
-            <Link className="nav-link" to="/admin">
-              Admin
-            </Link>
-          </nav>
         </header>
 
         <section className="certs-section" aria-labelledby="published-certs-title">
           <div className="section-heading">
             <div>
+              <p className="profile-name">Álvaro Pérez</p>
               <h1 id="published-certs-title" className="section-title home-title">
                 Tech Courses & Certifications
               </h1>
@@ -87,8 +83,11 @@ export function PublicLandingPage() {
 
                   return (
                     <article className="cert-card" key={cert.id}>
+                      <div className="cert-provider-mark">
+                        <ProviderLogo providerLabel={cert.provider} providerSlug={cert.providerSlug} />
+                        <span>{cert.provider}</span>
+                      </div>
                       <div className="cert-card-body">
-                        <p className="eyebrow">{cert.provider}</p>
                         <h4 className="cert-title">{cert.title}</h4>
                         <div className="cert-meta">
                           <span>{formatCompletedAt(cert.completedAt)}</span>
@@ -96,12 +95,7 @@ export function PublicLandingPage() {
                         </div>
                       </div>
                       {cert.externalUrl ? (
-                        <a
-                          className="text-link cert-link"
-                          href={cert.externalUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
+                        <a className="text-link cert-link" href={cert.externalUrl} target="_blank" rel="noreferrer">
                           View certificate
                         </a>
                       ) : null}

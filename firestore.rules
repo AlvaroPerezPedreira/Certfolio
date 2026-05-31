@@ -2,13 +2,17 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isOwner() {
+      return request.auth != null && request.auth.uid == 'PW98CUkzkjY2NMdS2FCMuKhIOka2';
+    }
+
     match /users/{userId}/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isOwner() && request.auth.uid == userId;
     }
 
     match /publicProfiles/{profileSlug}/{document=**} {
       allow read: if true;
-      allow write: if request.auth != null && request.auth.uid == 'PW98CUkzkjY2NMdS2FCMuKhIOka2';
+      allow write: if isOwner();
     }
   }
 }
