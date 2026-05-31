@@ -96,9 +96,3 @@ Implemented now:
 - private cert CRUD
 - publish/unpublish sync to `publicProfiles/alvaroperez/certs`
 - provider-tab public landing page
-
-Still pending:
-
-- polish for admin UX
-- final Firebase rule deployment and verification
-- Vercel deployment setup
